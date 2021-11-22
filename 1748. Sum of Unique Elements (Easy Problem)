@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int sumOfUnique(vector<int>& nums) {
+        int n = nums.size();
+        int i, j, sum = 0;
+        unordered_map<int, int> result;
+        for(i = 0; i < n; i++)
+        {
+            result[nums[i]]++;
+        }
+        for(auto i : result)
+        {
+            if(i.second==1)
+            {
+                sum+=i.first;
+            }
+        }
+        return sum;
+    }
+};
