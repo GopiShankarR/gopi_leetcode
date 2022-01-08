@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<int> smallerNumbersThanCurrent(vector<int>& nums) {
+    vector<int> result;
+    for(auto i:nums){
+        result.push_back(i);
+    }    
+    
+    map<int, int> mapping;
+    sort(nums.begin(), nums.end());
+        
+    for(auto i:nums){
+        auto last = nums.back();
+        nums.pop_back();
+        mapping[last] = nums.size();
+
+    }
+    for (int i=0; i < result.size(); i++){
+        result[i] = mapping[result[i]];
+    }
+        
+    return result;
+    }
+};
