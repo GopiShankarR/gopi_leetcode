@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int countConsistentStrings(string allowed, vector<string>& words) {
+        unordered_set<char> allowed_hash;
+        for(auto a:allowed){
+            allowed_hash.insert(a);
+        }
+        int count = 0;
+        for(auto w:words)
+        {
+            int i=0;
+            for(i = 0; i < w.size(); i++)
+            {
+                if(allowed_hash.count(w[i]))
+                    continue;
+                else
+                    break;
+            }
+            if(i == w.size())
+                count++;
+        }
+        return count;
+    }
+};
