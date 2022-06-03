@@ -1,0 +1,12 @@
+class Solution {
+public:
+    int maxProductDifference(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        int n = nums.size();
+        int i = 0, a = 0, b = 0, result = 0;
+        a = nums[n-1] * nums[n-2];
+        b = nums[i] * nums[i+1];
+        result = a - b;
+        return result;
+    }
+};
