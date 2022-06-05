@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int distributeCandies(vector<int>& candyType) {
+        int n = candyType.size();
+        int count = 0, i = 0;
+        int half = n/2;
+        sort(candyType.begin(), candyType.end());
+        int prev = candyType[0];
+        count++;
+        for(i = 1; i < n; i++)
+        {
+            if(prev != candyType[i] && count < half)
+            {
+                count++;
+                prev = candyType[i];
+            }
+            if(count == half)
+            {
+                break;
+            }
+        }
+        return count;
+    }
+};
