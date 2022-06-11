@@ -1,0 +1,22 @@
+class Solution {
+public:
+    bool areOccurrencesEqual(string s) {
+        int n = s.size();
+        unordered_map<char, int> temp;
+        vector<int> arr;
+        for(const char &c: s)
+        {
+            temp[c]++;
+        }
+        int count = s.length() / temp.size();
+        
+        for(auto x : temp)
+        {
+            if(x.second != count)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+};
