@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int uniqueMorseRepresentations(vector<string>& words) {
+        string str, morse[26] = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
+        map<string,int> morsemap;
+        int i, j;
+        int n = words.size();
+        for(i = 0; i < n; i++)
+        {
+            str = "";
+            for(j = 0; j < words[i].length(); j++)
+            {
+                str += morse[words[i][j] - 97];
+            }
+            morsemap[str]++;
+        }
+        return morsemap.size();
+    }
+};
