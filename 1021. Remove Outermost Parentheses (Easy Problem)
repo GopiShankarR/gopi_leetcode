@@ -1,0 +1,25 @@
+class Solution {
+public:
+    string removeOuterParentheses(string s) {
+      int n = s.size();
+      int count = 0, i = 0, j = 0;
+      string result = "";
+      for(i = 0; i < n; i++)
+      {
+        if(s[i] == '(')
+        {
+          count++;
+        }
+        else if(s[i] == ')')
+        {
+          count--;
+        }
+        if(!count)
+        {
+          result += s.substr(j + 1, i - j - 1);
+          j = i + 1;
+        }
+      }
+      return result;
+    }
+};
