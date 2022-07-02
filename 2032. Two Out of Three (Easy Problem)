@@ -1,0 +1,42 @@
+class Solution {
+public:
+    vector<int> twoOutOfThree(vector<int>& nums1, vector<int>& nums2, vector<int>& nums3) {
+      vector<int> result;
+      unordered_set<int> two;
+      unordered_map<int, int> three;
+      for(auto &x:nums1)
+      {
+        if(!two.count(x))
+        {
+          two.insert(x);
+          three[x]++;
+        }
+      }
+      two.clear();
+      for(auto &x:nums2)
+      {
+        if(!two.count(x))
+        {
+          two.insert(x);
+          three[x]++;
+        }
+      }
+      two.clear();
+      for(auto &x:nums3)
+      {
+        if(!two.count(x))
+        {
+          two.insert(x);
+          three[x]++;
+        }
+      }
+      for(auto &[x, i]: three)
+      {
+        if(i > 1)
+        {
+          result.push_back(x);
+        }
+      }
+      return result;
+    }
+};
