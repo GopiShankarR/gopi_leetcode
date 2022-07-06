@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int smallestRangeI(vector<int>& nums, int k) {
+      int min_num = nums[0];
+      int max_num = nums[0];
+      for(int i: nums)
+      {
+        if(i < min_num)
+        {
+          min_num = i;
+        }
+        if(i > max_num)
+        {
+          max_num = i;
+        }
+      }
+      return max_num - min_num > 2 * k ? max_num - min_num - 2 * k : 0;
+    }
+};
