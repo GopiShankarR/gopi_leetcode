@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int arraySign(vector<int>& nums) {
+    int neg_count = 0, i;
+    int n = nums.size();
+    for(i = 0; i != nums.size(); i++)
+    {
+      if(nums[i])
+      {
+        if(nums[i] < 0) 
+          neg_count++;
+      } 
+      else 
+      {
+        return 0;
+      }
+    }
+    return neg_count % 2 ? -1 : 1;
+  }
+};
