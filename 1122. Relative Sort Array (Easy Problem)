@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<int> relativeSortArray(vector<int>& arr1, vector<int>& arr2) {
+      map<int,int> hashmap;
+      vector<int> result;
+      for(auto& i:arr1)
+      {
+        hashmap[i]++;
+      } 
+      for(auto& i:arr2)
+      {
+        if(hashmap.count(i))
+        {
+          int count = hashmap[i];
+          while(count--)
+          {
+            result.push_back(i);
+          }
+          hashmap.erase(i);
+        }
+      }
+      for(auto& i:hashmap)
+      {
+        int n = i.second;
+        while(n--)
+        {
+          result.push_back(i.first);
+        }
+      }
+      return result;
+    }
+};
