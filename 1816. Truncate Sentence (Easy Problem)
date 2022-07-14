@@ -1,0 +1,25 @@
+class Solution {
+public:
+    string truncateSentence(string s, int k) {
+      int n = s.length();
+      int i, count = 0;
+      string result = "";
+      for(i = 0; i < n; i++)
+      {
+        if(s[i] == ' ')
+        {
+          count++;
+          if(count == k)
+          {
+            break;
+          }
+          result += s[i];
+        }
+        else
+        {
+          result += s[i];
+        }
+      }
+      return result;
+    }
+};
