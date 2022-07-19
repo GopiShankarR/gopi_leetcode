@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int findLucky(vector<int>& arr) {
+      int n = arr.size();
+      unordered_map<int, int> hashmap;
+      int result = INT_MIN;
+      int i;
+      for(i = 0; i < n; i++)
+      {
+        hashmap[arr[i]]++;
+      }
+      for(auto i: hashmap)
+      {
+        if(i.first == i.second)
+        {
+          result = max(result, i.first);
+        }
+      }
+      if(result != INT_MIN)
+      {
+        return result;
+      }
+      else
+      {
+        return -1;
+      }
+    }
+};
