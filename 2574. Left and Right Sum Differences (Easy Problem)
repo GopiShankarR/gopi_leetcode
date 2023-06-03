@@ -1,0 +1,16 @@
+class Solution {
+public:
+    vector<int> leftRightDifference(vector<int>& nums) {
+        int n = nums.size();
+        int val, i;
+        int rightSum = accumulate(nums.begin(), nums.end(), 0);
+        int leftSum = 0;
+        for(i = 0; i < n; i++) {
+            rightSum -= nums[i];
+            val = abs(leftSum - rightSum);
+            leftSum += nums[i];
+            nums[i] = val;
+        }
+        return nums;
+    }
+};
