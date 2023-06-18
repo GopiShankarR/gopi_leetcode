@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int subtractProductAndSum(int n) {
+        vector<int> res;
+        int i, sum = 0, prod = 1;
+        while(n) {
+            res.push_back(n % 10);
+            n /= 10;
+        }
+        sort(res.begin(), res.end());
+        for(i = 0; i < res.size(); i++) {
+            sum += res[i];
+            prod *= res[i];
+        }
+        return prod - sum;
+    }
+};
