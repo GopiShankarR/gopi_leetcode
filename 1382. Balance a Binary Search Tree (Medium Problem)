@@ -1,0 +1,29 @@
+class Solution {
+public:
+    TreeNode* balanceBST(TreeNode* root) {
+        vector<int> arr;
+        stack<TreeNode*> st;
+        TreeNode* temp = root;
+        while(temp || !st.empty()) {
+            while(temp) {
+                st.push(temp);
+                temp = temp->left;
+            }
+            temp = st.top();
+            st.pop();
+            arr.push_back(temp->val);
+            temp = temp->right;
+        }
+        return buildTree(arr, 0, arr.size() - 1);
+    }
+    TreeNode* buildTree(vector<int> &arr, int start, int end) {
+        if(start > end) {
+            return nullptr;
+        }
+        int mid = (start + end) / 2;
+        TreeNode* newNode = new TreeNode(arr[mid]);
+        newNode->left = buildTree(arr, start, mid - 1);
+        newNode->right = buildTree(arr,  mid + 1, end);
+        return newNode;
+    }
+};
