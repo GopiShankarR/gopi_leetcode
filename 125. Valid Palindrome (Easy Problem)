@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        int n = s.length();
+        string normalString;
+        string reverseString;
+        for(auto &c: s) {
+            if(c >= 'A' && c <= 'Z')
+                c = c - 'A' + 'a';
+        }
+        for(auto c: s) {
+            if((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z')) {
+                normalString.push_back(c);
+            }
+        }
+        reverseString = normalString;
+        reverse(reverseString.begin(), reverseString.end());
+        if(normalString == reverseString) {
+            return true;
+        }
+        return false;
+    }
+};
