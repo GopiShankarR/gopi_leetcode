@@ -1,0 +1,34 @@
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        unordered_map<char, char> sMap;
+        unordered_map<char, char> tMap;
+        int n = s.length();
+        int m = t.length();
+        int sCount = 0, tCount = 0;
+        if(n != m) {
+            return false;
+        }
+        for(int i = 0; i < n; i++)
+        {
+            if(sMap.count(s[i]) == 0 && tMap.count(t[i]) == 0)    
+            {
+                sMap[s[i]] = t[i];
+                tMap[t[i]] = s[i];
+            }
+            else if(sMap.count(s[i]) == 1 && tMap.count(t[i]) == 1)
+            {
+                if(sMap[s[i]] == t[i] && tMap[t[i]] == s[i])  {
+                    continue;
+                }
+                else {
+                    return false;
+                }
+            }
+            else {
+                return false;
+            }
+        }
+        return true;
+    }
+};
