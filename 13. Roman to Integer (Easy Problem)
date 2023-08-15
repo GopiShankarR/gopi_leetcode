@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int romanToInt(string s) {
+        int ro[1000];
+        ro['I'] = 1;
+        ro['V'] = 5;
+        ro['X'] = 10;
+        ro['L'] = 50;
+        ro['C'] = 100;
+        ro['D'] = 500;
+        ro['M'] = 1000;
+        int n = s.size();
+        int ans = 0;
+        int i;
+        for(i = 0; i < n; i++) {
+            if(i + 1 < n && ro[s[i+1]] > ro[s[i]]) {
+                ans -= ro[s[i]];
+            }
+            else {
+                ans += ro[s[i]];
+            }
+        }
+        return ans;
+    }
+};
