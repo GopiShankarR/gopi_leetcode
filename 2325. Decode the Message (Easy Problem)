@@ -1,0 +1,27 @@
+class Solution {
+public:
+    string decodeMessage(string key, string message) {
+        unordered_map<char, char> hashMap;
+        int n = key.length();
+        int m = message.length();
+        char temp = 'a';
+        string result;
+        for(int i = 0; i < n; i++) {
+            if(key[i] == ' ') {
+                continue;
+            }
+            auto it = hashMap.find(key[i]);
+            if(it == hashMap.end()) {
+                hashMap[key[i]] = temp++;
+            }
+        }
+        for(int i = 0; i < m; i++) {
+            if(message[i] == ' ') {
+                result.push_back(' ');
+            } else {
+                result.push_back(hashMap[message[i]]);
+            }
+        }
+        return result;
+    }
+};
