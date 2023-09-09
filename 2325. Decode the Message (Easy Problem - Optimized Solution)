@@ -1,0 +1,21 @@
+class Solution {
+public:
+    string decodeMessage(string key, string message) {
+        unordered_map<char, char> hashMap;
+        string result = "";
+        int i = 0;
+        for(auto k: key){
+            if(k != ' '){
+                if(!hashMap[k])
+                    hashMap[k] = 'a' + i++;
+            }
+        }
+        for(auto msg: message){
+            if(msg == ' ')
+                result += " ";
+            else
+                result += hashMap[msg];
+        }
+        return result;
+    }
+};
