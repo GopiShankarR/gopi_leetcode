@@ -1,0 +1,47 @@
+class ParkingSystem {
+public:
+    int bigVar;
+    int mediumVar;
+    int smallVar;
+    ParkingSystem(int big, int medium, int small) {
+        bigVar = big;
+        mediumVar = medium;
+        smallVar = small;
+    }
+    
+    bool addCar(int carType) {
+        switch(carType) {
+            case 1: {
+                if(bigVar == 0) {
+                    return false;
+                } else {
+                    bigVar--;
+                }
+            }
+            break;
+            case 2: {
+                if(mediumVar == 0) {
+                    return false;
+                } else {
+                    mediumVar--;
+                }
+            }
+            break;
+            case 3: {
+                if(smallVar == 0) {
+                    return false;
+                } else {
+                    smallVar--;
+                }
+            }
+            break;
+        }
+        return true;
+    }
+};
+
+/**
+ * Your ParkingSystem object will be instantiated and called as such:
+ * ParkingSystem* obj = new ParkingSystem(big, medium, small);
+ * bool param_1 = obj->addCar(carType);
+ */
