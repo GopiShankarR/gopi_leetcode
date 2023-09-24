@@ -1,0 +1,26 @@
+class Solution {
+public:
+    double champagneTower(int poured, int query_row, int query_glass) {
+        if(poured == 0) {
+            return 0;
+        }
+        vector<double> pouredQueue;
+        pouredQueue.push_back(poured);
+        for(int i = 1; i <= query_row; i++){
+            int n = pouredQueue.size();
+            vector<double> nextQueue(n+1); 
+            for(int j = 0; j < n; j++)
+            {
+                double remaining = pouredQueue[j] - 1.0;
+                if(remaining <= 0)
+                    continue;
+                else{
+                    nextQueue[j] +=  remaining / 2;
+                    nextQueue[j + 1] +=  remaining / 2;
+                }
+            }
+            pouredQueue = nextQueue;
+        }
+        return (pouredQueue[query_glass] > 1) ? 1 : pouredQueue[query_glass];
+    }
+};
