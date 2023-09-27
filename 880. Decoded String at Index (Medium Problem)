@@ -1,0 +1,31 @@
+class Solution {
+public:
+    bool check_alphabet(char c) {
+        return (c >= 'a' && c <= 'z');
+    }
+
+    string decodeAtIndex(string s, int k) {
+        long length = 0;
+        int n = s.length();
+        for (int i = 0; i < n; i++) {
+            if (check_alphabet(s[i])) {
+                length += 1;
+            } else {
+                length *= (s[i] - '0');
+            }
+        }
+        for (int i = n - 1; i >= 0; i--) {
+            if (!check_alphabet(s[i])) {
+                length /= (s[i] - '0');
+                k %= length;
+            } else {
+                k %= length;
+                if (k == 0) {
+                    return s.substr(i, 1);
+                }
+                length -= 1;
+            }
+        }
+        return "";
+    }
+};
