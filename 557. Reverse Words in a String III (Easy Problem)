@@ -1,0 +1,18 @@
+class Solution {
+public:
+    string reverseWords(string s) {
+        s.push_back(' ');
+        string res, temp;
+        for(auto c: s) {
+            if(c == ' ') {
+                reverse(temp.begin(), temp.end());
+                res += temp;
+                res += ' ';
+                temp.clear();
+            }
+            else temp.push_back(c);
+        }
+        res.pop_back();
+        return res;
+    }
+};
