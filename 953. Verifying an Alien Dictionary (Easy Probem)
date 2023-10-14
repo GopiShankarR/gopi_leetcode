@@ -1,0 +1,28 @@
+class Solution {
+public:
+    bool isAlienSorted(vector<string>& words, string order) {
+        int a = words.size();
+        int b = order.size();
+        bool boolean = false;
+        unordered_map<char, int> hashMap;
+        for(int i = 0; i < b; i++) {
+            hashMap[order[i]] = i;
+        }
+        for(int i = 0; i < a - 1; i++){
+            for(int j = 0; j < words[i].length(); j++){
+                if(hashMap[words[i][j]] < hashMap[words[i + 1][j]]) {
+                    boolean = true;
+                    break;
+                }
+                if((hashMap[words[i][j]] > hashMap[words[i+1][j]]) || (hashMap[words[i][0]] > hashMap[words[i + 1][0]])) {
+                    return false;
+                }
+            }
+        }
+         if((a == 2) && (words[0].length() <= words[1].length()) || boolean) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+};
