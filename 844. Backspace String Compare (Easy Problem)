@@ -1,0 +1,21 @@
+class Solution {
+public:
+    bool backspaceCompare(string s, string t) {
+        vector<char> sString, tString;
+        for(char c: s) {
+            if(c >= 'a' && c <= 'z') {
+                sString.push_back(c);
+            } else if(c = '#' && !sString.empty()) {
+                sString.pop_back();
+            }
+        }
+        for(char c: t) {
+            if(c >= 'a' && c <= 'z') {
+                tString.push_back(c);
+            } else if(c = '#' && !tString.empty()) {
+                tString.pop_back();
+            }
+        }
+        return sString == tString;
+    }
+};
