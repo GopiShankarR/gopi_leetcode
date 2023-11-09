@@ -1,0 +1,16 @@
+class Solution {
+public:
+    vector<string> sortPeople(vector<string>& names, vector<int>& heights) {
+        int n = names.size();
+        map<int, string> hashMap;
+        vector<string> result;
+        for(int i = 0; i < n; i++) {
+            hashMap[heights[i]] = names[i];
+        }
+        for(auto i: hashMap) {
+            result.push_back(i.second);
+        }
+        reverse(result.begin(), result.end());
+        return result;
+    }
+};
