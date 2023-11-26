@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int prefixCount(vector<string>& words, string pref) {
+        int prefLength = pref.length();
+        int n = words.size();
+        int count = 0;
+        for(auto word: words) {
+            int temp = 0;
+            for(int j = 0; j < prefLength; j++) {
+                if(word[j] != pref[j]) {
+                    break;
+                } else {
+                    temp++;
+                }
+            }
+            if(temp == prefLength) {
+                count++;
+            }
+        }
+        return count;
+    }
+};
