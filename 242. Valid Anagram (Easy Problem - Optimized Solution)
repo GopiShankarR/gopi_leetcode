@@ -1,0 +1,21 @@
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        int m = s.length();
+        int n = t.length();
+        if(m != n) {
+            return false;
+        }
+        vector<int> countAlphabets(26);
+        for(auto c: s) {
+            ++countAlphabets[c - 'a'];
+        }
+        for(auto c: t) {
+            if(countAlphabets[c - 'a'] == 0) {
+                return false;
+            }
+            --countAlphabets[c - 'a'];
+        }
+        return true;
+    }
+};
