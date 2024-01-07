@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int longestPalindrome(string s) {
+        map<char, int> hashMap;
+        int n = s.length();
+        if(n == 0 || n == 1) {
+            return n;
+        }
+        int count = 0;
+        for(auto c: s) {
+            if(hashMap.find(c) != hashMap.end()) {
+                hashMap[c]++;
+            } else {
+                hashMap[c] = 1;
+            }
+        }
+        for(auto i: hashMap) {
+            count += i.second - (i.second % 2);
+        }
+        if(count == n) {
+            return count;
+        }
+        return count + 1;
+    }
+};
