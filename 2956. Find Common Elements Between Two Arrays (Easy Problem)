@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<int> findIntersectionValues(vector<int>& nums1, vector<int>& nums2) {
+        int m = nums1.size();
+        int n = nums2.size();
+        vector<int> result;
+        unordered_set<int> hashSet1(nums1.begin(), nums1.end());
+        unordered_set<int> hashSet2(nums2.begin(), nums2.end());
+        int count1 = 0;
+        for(int i: nums2) {
+            if(hashSet1.count(i)) {
+                count1++;
+            }
+        }
+        int count2 = 0;
+        for(int i: nums1) {
+            if(hashSet2.count(i)) {
+                count2++;
+            }
+        }
+        result.push_back(count2);
+        result.push_back(count1);
+        return result;
+    }
+};
