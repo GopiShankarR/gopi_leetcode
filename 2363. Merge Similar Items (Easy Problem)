@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<vector<int>> mergeSimilarItems(vector<vector<int>>& items1, vector<vector<int>>& items2) {
+        int m = items1.size();
+        int n = items2.size();
+        vector<vector<int>> result;
+        map<int, int> hashMap;
+        for(auto i: items1) {
+            hashMap[i[0]] += i[1];
+        }
+        for(auto i: items2) {
+            hashMap[i[0]] += i[1];
+        }
+        for(auto i: hashMap) {
+            result.push_back({i.first, i.second});
+        }
+        return result;
+    }
+};
