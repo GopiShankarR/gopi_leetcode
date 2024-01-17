@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int secondHighest(string s) {
+        int n = s.length();
+        int result = 1;
+        vector<int> ans(10, 0);
+        for(int i = 0; i < n; i++) {
+            int temp = s[i] - '0';
+            if(temp >= 0 && temp < 10) {
+                ans[temp]++;
+            }
+        }
+        for(int i = 9; i >= 0; i--) {
+            if(ans[i] > 0) {
+                if(result == 0) {
+                    return i;
+                }
+                result--;
+            }
+        }
+        return -1;
+    }
+};
