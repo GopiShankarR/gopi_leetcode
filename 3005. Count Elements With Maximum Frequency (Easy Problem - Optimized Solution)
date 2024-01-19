@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int maxFrequencyElements(vector<int>& nums) {
+        int n = nums.size();
+        sort(nums.begin(), nums.end());
+        int result = 0;
+        int maxCount = 0;
+        map<int, int> hashMap;
+        for(int i = 0; i < n; i++) {
+            hashMap[nums[i]]++;
+        }
+        for(auto i: hashMap) {
+            if(i.second > maxCount) {
+                maxCount = i.second;
+            }
+        }
+        for(auto i: hashMap) {
+            if(maxCount == i.second) {
+                result += i.second;
+            }
+        }
+        return result;
+    }
+};
