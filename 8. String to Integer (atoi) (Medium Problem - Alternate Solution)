@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int myAtoi(string s) {
+        int n = s.length();
+        while(n && isspace(s.front())) {
+            s.erase(s.begin());
+        }
+        try {
+            return stoi(s);
+        } catch (out_of_range& e)
+        {
+            if(s[0] == '-') {
+                return INT_MIN;
+            }
+            return INT_MAX;
+        } catch (invalid_argument& e)
+        {
+            return 0;
+        }
+    }
+};
