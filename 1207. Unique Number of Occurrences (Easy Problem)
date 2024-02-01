@@ -1,0 +1,22 @@
+class Solution {
+public:
+    bool uniqueOccurrences(vector<int>& arr) {
+        vector<int> temp;
+        map<int, int> hashMap;
+        int n = arr.size();
+        for(int i = 0; i < n; i++) {
+            hashMap[arr[i]]++;
+        }
+        for(auto i: hashMap) {
+            temp.push_back(i.second);
+        }
+        int tempSize = temp.size();
+        sort(temp.begin(), temp.end());
+        for(int i = 0; i < tempSize - 1; i++) {
+            if(temp[i] == temp[i + 1]) {
+                return false;
+            }
+        }
+        return true;
+    }
+};
