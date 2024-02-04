@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int maxOperations(vector<int>& nums, int k) {
+        int result = 0;
+        int n = nums.size();
+        unordered_map<int, int> hashMap;
+        for(int i = 0; i < n; i++) {
+            hashMap[nums[i]]++;
+        }
+        for(auto i: nums) {
+            int x = k - i;
+            if(i == x) {
+                if(hashMap[i] > 1) {
+                    result++;
+                    hashMap[i] -= 2;
+                }
+            } else {
+                if(hashMap[i] > 0 && hashMap[x] > 0) {
+                    result++;
+                    hashMap[i]--;
+                    hashMap[x]--;
+                }
+            }
+        }
+        return result;
+    }
+};
