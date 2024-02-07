@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int numUniqueEmails(vector<string>& emails) {
+        const int n = emails.size();
+        unordered_set<string> hashSet;
+        for(const string& i: emails) {
+            string temp;
+            for(const char c: i) {
+                if(c == '+' || c == '@') {
+                    break;
+                }
+                if(c == '.') {
+                    continue;
+                }
+                temp += c;
+            }
+            string findDomain = i.substr(i.find('@'));
+            hashSet.insert(temp + findDomain);
+        }
+        return hashSet.size();
+    }
+};
