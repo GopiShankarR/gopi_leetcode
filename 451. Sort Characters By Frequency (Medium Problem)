@@ -1,0 +1,22 @@
+class Solution {
+public:
+    string frequencySort(string s) {
+        const int n = s.length();
+        string result = "";
+        unordered_map<char, int> hashMap;
+        vector<pair<int, char>> temp;
+        for(int i = 0; i < n; i++) {
+            hashMap[s[i]]++;
+        }
+        for(auto i: hashMap) {
+            temp.push_back({i.second, i.first});
+        }
+        sort(temp.begin(), temp.end(), greater<pair<int, char>>());
+        for(auto i: temp) {
+            while(i.first--) {
+                result += i.second;
+            }
+        }
+        return result;
+    }
+};
