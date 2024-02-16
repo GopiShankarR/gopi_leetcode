@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int findLeastNumOfUniqueInts(vector<int>& arr, int k) {
+        int n = arr.size();
+        unordered_map<int, int> hashMap;
+        vector<int> newArr;
+        int count = 0;
+        for(int i = 0; i < n; i++) {
+            hashMap[arr[i]]++;
+        }
+        for(auto i: hashMap) {
+            newArr.push_back(i.second);
+        }
+        sort(newArr.begin(), newArr.end());
+        for(int i = 0; i < newArr.size(); i++) {
+            if(k > newArr[i]) {
+                k -= newArr[i];
+                newArr[i] = 0;
+            } else {
+                newArr[i] -= k;
+                k = 0;
+            }
+            if(newArr[i] != 0) {
+                count++;
+            }
+        }
+        return count;
+    }
+};
