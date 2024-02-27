@@ -1,0 +1,37 @@
+class Solution {
+public:
+    bool buddyStrings(string s, string goal) {
+        int m = s.size();
+        int n = goal.size();
+        if(m != n) {
+            return false;
+        }
+        string str1 = s;
+        string str2 = goal;
+        sort(str1.begin(), str1.end());
+        sort(str2.begin(), str2.end());
+        if(str1 != str2) {
+            return false;
+        }
+        int flag = 0;
+        for(int i = 0; i < str1.size() - 1; i++) {
+            if(str1[i] == str1[i + 1]) {
+                flag = 1;
+                break;
+            }
+        }
+        int count = 0;
+        for(int i = 0; i < m; i++) {
+            if(s[i] != goal[i]) {
+                count++;
+            }
+            if(count > 2) {
+                return false;
+            }
+        }
+        if(count == 0 && flag == 0) {
+            return false;
+        }
+        return true;
+    }
+};
