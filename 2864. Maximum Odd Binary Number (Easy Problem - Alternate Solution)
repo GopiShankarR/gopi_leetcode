@@ -1,0 +1,15 @@
+class Solution {
+public:
+    string maximumOddBinaryNumber(string s) {
+        int count0 = 0, count1 = 0;
+        for(auto i: s) {
+            if(i == '1') {
+                count1++;
+            } else if(i == '0') {
+                count0++;
+            }
+        }
+        string result = string(count1 - 1, '1') + string(count0, '0') + '1';
+        return result;
+    }
+};
