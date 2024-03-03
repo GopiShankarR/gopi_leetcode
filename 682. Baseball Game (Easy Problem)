@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int calPoints(vector<string>& operations) {
+        stack<int> st;
+        int n = operations.size();
+        for(int i = 0; i < n; i++) {
+            if(operations[i] == "C" && !st.empty()) {
+                st.pop();
+            }
+            else if(operations[i] == "D" && !st.empty()) {
+                st.push(2 * st.top());
+            }
+            else if(operations[i] == "+" && !st.empty()) {
+                int top = st.top();
+                st.pop();
+                int d = top + st.top();
+                st.push(top);
+                st.push(d);
+            } else {
+                st.push(stoi(operations[i]));
+            }
+        }
+        int stSize = st.size();
+        int sum = 0;
+        for(int i = 0; i < n; i++) {
+            if(!st.empty()) {
+                sum += st.top();
+                st.pop();
+            } else {
+                break;
+            }
+        }
+        return sum;
+    }
+};
