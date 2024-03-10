@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        int m = nums1.size();
+        int n = nums2.size();
+        vector<int> result;
+        map<int, int> hashMap1;
+        map<int, int> hashMap2;
+        for(int i = 0; i < m; i++) {
+            hashMap1[nums1[i]]++;
+        }
+        for(int i = 0; i < n; i++) {
+            hashMap2[nums2[i]]++;
+        }
+        for(auto i: hashMap1) {
+            for(auto j: hashMap2) {
+                if(i.first == j.first) {
+                    result.push_back(i.first);
+                }
+            }
+        }
+        return result;
+    }
+};
