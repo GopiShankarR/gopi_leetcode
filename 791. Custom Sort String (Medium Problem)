@@ -1,0 +1,26 @@
+class Solution {
+public:
+    string customSortString(string order, string s) {
+        string result = "";
+        unordered_map<char, int> hashMap;
+        for(auto i: s) {
+            hashMap[i]++;
+        }
+        for(auto i: order) {
+            int n = hashMap[i];
+            for(int j = 0; j < n; j++) {
+                result += i;
+                hashMap[i]--;
+            }
+        }
+        for(auto i: hashMap) {
+            if(i.second != 0) {
+                for(int j = 0; j < i.second; j++) {
+                    result += i.first;
+                    hashMap[i.first]--;
+                }
+            }
+        }
+        return result;
+    }
+};
