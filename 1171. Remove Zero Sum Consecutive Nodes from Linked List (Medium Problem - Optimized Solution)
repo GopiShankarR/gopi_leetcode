@@ -1,0 +1,29 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* removeZeroSumSublists(ListNode* head) {
+        ListNode dummy(0, head);
+        int sum = 0;
+        unordered_map<int, ListNode*> hashMap;
+        hashMap[0] = &dummy;
+        for(; head; head = head -> next) {
+            sum += head -> val;
+            hashMap[sum] = head;
+        }
+        sum = 0;
+        for(head = &dummy; head; head = head -> next) {
+            sum += head -> val;
+            head -> next = hashMap[sum] -> next;
+        }
+        return dummy.next;
+    }
+};
