@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int pivotInteger(int n) {
+        int leftSide = (n * (n + 1)) / 2, rightSide = 0;
+        while(leftSide > rightSide) {
+            rightSide += n;
+            if(leftSide == rightSide) {
+                return n;
+            }
+            leftSide -= n;
+            n--;
+        }
+        return -1;
+    }
+};
