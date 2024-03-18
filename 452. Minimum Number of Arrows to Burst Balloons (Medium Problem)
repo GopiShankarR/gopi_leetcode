@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int findMinArrowShots(vector<vector<int>>& points) {
+        sort(points.begin(), points.end());
+        const int n = points.size();
+        int index = 1;
+        int minRange = points[0][0];
+        int maxRange = points[0][1];
+        int arrows = 1;
+        while(index < n) {
+            if(points[index][0] <= maxRange) {
+                minRange = max(minRange, points[index][0]);
+                maxRange = min(maxRange, points[index][1]);
+                index++;
+            } else {
+                arrows++;
+                minRange = points[index][0];
+                maxRange = points[index][1];
+                index++;
+            }
+        }
+        return arrows;
+    }
+};
