@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int leastInterval(vector<char>& tasks, int n) {
+        int tasksSize = tasks.size();
+        vector<int> count(26);
+        for(const char task: tasks) {
+            count[task - 'A']++;
+        }
+        sort(count.begin(), count.end());
+        int separate = count[25] - 1;
+        int idle = separate * n;
+        for(int i = 24; i >= 0; i--) {
+            idle -= min(separate, count[i]);
+        }
+        return idle < 0 ? tasksSize : tasksSize + idle;
+    }
+};
