@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int maxNumberOfBalloons(string text) {
+        const int n = text.length();
+        int result = INT_MAX;
+        vector<int> count(26);
+        for(char c: text) {
+            count[c - 'a']++;
+        }
+        for(char c: string("ban")) {
+            result = min(result, count[c - 'a']);
+        }
+        for(char c: string("lo")) {
+            result = min(result, count[c - 'a'] / 2);
+        }
+        return result;
+    }
+};
