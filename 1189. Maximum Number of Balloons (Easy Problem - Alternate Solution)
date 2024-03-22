@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int maxNumberOfBalloons(string text) {
+        const int n = text.length();
+        unordered_map<char, int> hashMap;
+        int count = INT_MAX;
+        for(char c: text) {
+            if(c == 'a' || c == 'b' || c == 'o' || c == 'l' || c == 'n') {
+                hashMap[c]++;
+            }
+        }
+        if(hashMap.find('a') == hashMap.end() || hashMap.find('b') == hashMap.end() || hashMap.find('l') == hashMap.end() || hashMap.find('n') == hashMap.end() || hashMap.find('o') == hashMap.end()) {
+            return 0;
+        }
+        hashMap['o'] = hashMap['o'] / 2;
+        hashMap['l'] = hashMap['l'] / 2;
+        for(auto i: hashMap) {
+            count = min(count, i.second);
+        }
+        return count == INT_MAX ? 0 : count;
+    }
+};
