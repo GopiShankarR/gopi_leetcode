@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int maxNumberOfBalloons(string text) {
+        const int n = text.length();
+        unordered_map<char, int> hashMap;
+        string temp = "balloon";
+        int count = 0;
+        for(char c: text) {
+            hashMap[c]++;
+        }
+        while(hashMap['b'] > 0) {
+            for(char c: temp) {
+                if(hashMap[c] <= 0) {
+                    return count;
+                }
+                hashMap[c]--;
+            }
+            count++;
+        }
+        return count;
+    }
+};
