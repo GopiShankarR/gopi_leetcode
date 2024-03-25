@@ -1,0 +1,15 @@
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& nums) {
+        const int n = nums.size();
+        vector<int> result;
+        vector<bool> count(n * 2);
+        for(int i = 0; i < n; i++) {
+            if(count[nums[i]] == true) {
+                result.push_back(nums[i]);
+            }
+            count[nums[i]] = true;
+        }
+        return result;
+    }
+};
