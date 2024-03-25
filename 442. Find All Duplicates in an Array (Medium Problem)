@@ -1,0 +1,17 @@
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& nums) {
+        const int n = nums.size();
+        vector<int> result;
+        map<int, int> hashMap;
+        for(int i: nums) {
+            hashMap[i]++;
+        }
+        for(auto i: hashMap) {
+            if(i.second == 2) {
+                result.push_back(i.first);
+            }
+        }
+        return result;
+    }
+};
