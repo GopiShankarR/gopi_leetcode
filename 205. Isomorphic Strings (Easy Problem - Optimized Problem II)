@@ -1,0 +1,17 @@
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        int m = s.length();
+        int n = t.length();
+        vector<int> sCount(128);
+        vector<int> tCount(128);
+        for(int i = 0; i < n; i++) {
+            if(sCount[s[i]] != tCount[t[i]]) {
+                return false;
+            }
+            sCount[s[i]] = i + 1;
+            tCount[t[i]] = i + 1;
+        }
+        return true;
+    }
+};
