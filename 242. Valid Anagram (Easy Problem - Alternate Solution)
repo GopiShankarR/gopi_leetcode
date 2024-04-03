@@ -1,0 +1,17 @@
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        unordered_map<char, int> hashStringS;
+        unordered_map<char, int> hashStringT;
+        for(char c: s) {
+            hashStringS[c]++;
+        }
+        for(char c: t) {
+            hashStringT[c]++;
+        }
+        if(hashStringS == hashStringT) {
+            return true;
+        }
+        return false;
+    }
+};
