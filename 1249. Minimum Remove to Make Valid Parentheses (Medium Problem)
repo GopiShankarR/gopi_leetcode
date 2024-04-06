@@ -1,0 +1,32 @@
+class Solution {
+public:
+    string minRemoveToMakeValid(string s) {
+        const int n = s.length();
+        string result = "";
+        int left = 0, right = 0;
+        stack<char> st;
+        for(char c: s) {
+            if(c == '(') {
+                left++;
+            } else if(c == ')') {
+                right++;
+            }
+            if(right > left) {
+                right--;
+            } else {
+                st.push(c);
+            }
+        }
+        while(!st.empty()) {
+            char top = st.top();
+            st.pop();
+            if(left > right && top == '(') {
+                left--;
+            } else {
+                result += top;
+            }
+        }
+        reverse(result.begin(), result.end());
+        return result;
+    }
+};
