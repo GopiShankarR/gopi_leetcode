@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int countStudents(vector<int>& students, vector<int>& sandwiches) {
+        vector<int> count(2);
+        const int n = sandwiches.size();
+        for(const int i: students) {
+            count[i]++;
+        }
+        for(int i = 0; i < n; i++) {
+            if(count[sandwiches[i]] == 0) {
+                return n - i;
+            }
+            count[sandwiches[i]]--;
+        }
+        return 0;
+    }
+};
