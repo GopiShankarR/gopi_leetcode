@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int countStudents(vector<int>& students, vector<int>& sandwiches) {
+        int sq = 0, cir = 0;
+        for(auto i: students) {
+            if(i == 1) {
+                sq++;
+            } else {
+                cir++;
+            }
+        }
+        for(auto i: sandwiches) {
+            if(i == 1) {
+                if(sq > 0) {
+                    sq--;
+                } else {
+                    break;
+                }
+            }
+            if(i == 0) {
+                if(cir > 0) {
+                    cir--;
+                } else {
+                    break;
+                }
+            }
+        }
+        return cir + sq;
+    }
+};
