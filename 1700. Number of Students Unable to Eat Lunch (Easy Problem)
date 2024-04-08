@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int countStudents(vector<int>& students, vector<int>& sandwiches) {
+        const int m = students.size();
+        const int n = sandwiches.size();
+        int served = 0;
+        queue<int> qu;
+        stack<int> st;
+        for(auto i: students) {
+            qu.push(i);
+        }
+        for(int i = n - 1; i >= 0; i--) {
+            st.push(sandwiches[i]);
+        }
+        cout << qu.front();
+        while(!st.empty() && served < qu.size()) {
+            if(st.top() == qu.front()) {
+                st.pop();
+                qu.pop();
+                served = 0;
+            } else {
+                qu.push(qu.front());
+                qu.pop();
+                served++;
+            }
+        }
+        return qu.size();
+    }
+};
