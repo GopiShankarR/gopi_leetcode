@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int subsetXORSum(vector<int>& nums) {
+        return dfs(nums, 0, 0);
+    }
+private:
+    int dfs(const vector<int>& nums, int index, int xors) {
+        const int n = nums.size();
+        if(index == n) {
+            return xors;
+        }
+        const int x = dfs(nums, index + 1, xors);
+        const int y = dfs(nums, index + 1, nums[index] ^ xors);
+        return x + y;
+    } 
+};
