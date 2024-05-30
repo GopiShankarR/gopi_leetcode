@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int countTriplets(vector<int>& arr) {
+        const int n = arr.size();
+        vector<int> triplets(n +  1, 0);
+        for(int i = 0; i < n; i++) {
+            triplets[i + 1] = triplets[i] ^ arr[i];
+        }
+        int count = 0;
+        for(int i = 0; i < n; i++) {
+            for(int k = i + 1; k < n; k++) {
+                if(triplets[i] == triplets[k + 1]) {
+                    count += (k - i);
+                }
+            }
+        }
+        return count;
+    }
+};
