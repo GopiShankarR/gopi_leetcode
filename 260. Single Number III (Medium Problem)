@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<int> singleNumber(vector<int>& nums) {
+        const int n = nums.size();
+        vector<int> result;
+        int finalXor = 0;
+        for(int i: nums) {
+            finalXor ^= i;
+        }
+        int firstXor = 0, secondXor = 0;
+        int bitPosDiff = 0;
+        while(((finalXor >> bitPosDiff) & 1) != 1) {
+            bitPosDiff++;
+        }
+        for(int num: nums) {
+            if(((num >> bitPosDiff) & 1) == 1) {
+                firstXor ^= num;
+            } else {
+                secondXor ^= num;
+            }
+        }
+        return {firstXor, secondXor};
+    }
+};
