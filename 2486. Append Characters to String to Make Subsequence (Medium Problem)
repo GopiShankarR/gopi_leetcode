@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int appendCharacters(string s, string t) {
+        int i = 0, j = 0;
+        const int m = s.length();
+        const int n = t.length();
+        while(i < m && j < n) {
+            if(s[i] == t[j]) {
+                j++;
+            }
+            i++;
+        }
+        return n - j;
+    }
+};
