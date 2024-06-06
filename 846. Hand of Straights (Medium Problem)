@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool isNStraightHand(vector<int>& hand, int groupSize) {
+        const int n = hand.size();
+        map<int, int> hashMap;
+        for(const int i: hand) {
+            hashMap[i]++;
+        }
+        for(const auto& [start, _]: hashMap) {
+            cout << start << endl;
+            const int value = hashMap[start];
+            if(value > 0) {
+                for(int i = start; i < start + groupSize; i++) {
+                    hashMap[i] -= value;
+                    if(hashMap[i] < 0) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+};
