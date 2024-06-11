@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<int> relativeSortArray(vector<int>& arr1, vector<int>& arr2) {
+        vector<int> result;
+        vector<int> count(1001);
+        for(int i: arr1) {
+            count[i]++;
+        }
+        for(int i: arr2) {
+            while(count[i]-- > 0) {
+                result.push_back(i);
+            }
+        }
+        for(int i = 0; i < 1001; i++) {
+            while(count[i]-- > 0) {
+                result.push_back(i);
+            }
+        }
+        return result;
+    }
+};
