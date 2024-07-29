@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int numTeams(vector<int>& rating) {
+        int result = 0;
+        const int n = rating.size();
+        for(int i = 1; i < n - 1; i++) {
+            int leftL = 0, leftG = 0;
+            for(int j = 0; j < i; j++) {
+                if(rating[j] < rating[i]) {
+                    leftL++;
+                } else if(rating[j] > rating[i]) {
+                    leftG++;
+                }
+            }
+            int rightL = 0, rightG = 0;
+            for(int j = i + 1; j < n; j++) {
+                if(rating[j] < rating[i]) {
+                    rightL++;
+                } else if(rating[j] > rating[i]) {
+                    rightG++;
+                }
+            }
+            result += leftL * rightG + leftG * rightL;
+        }
+        return result;
+    }
+};
