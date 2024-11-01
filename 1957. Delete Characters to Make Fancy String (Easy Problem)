@@ -1,0 +1,12 @@
+class Solution {
+public:
+    string makeFancyString(string s) {
+        string result;
+        for(const char c: s) {
+            if(result.length() < 2 || result.back() != c || result[result.size() - 2] != c) {
+                result.push_back(c);
+            }
+        }
+        return result;
+    }
+};
