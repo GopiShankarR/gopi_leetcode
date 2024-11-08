@@ -1,0 +1,14 @@
+class Solution {
+public:
+    vector<int> getMaximumXor(vector<int>& nums, int maximumBit) {
+        const int mx = (1 << maximumBit) - 1;
+        vector<int> result;
+        int xors = 0;
+        for(const int num: nums) {
+            xors ^= num;
+            result.push_back(xors ^ mx);
+        }
+        reverse(result.begin(), result.end());
+        return result;
+    }
+};
