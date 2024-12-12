@@ -1,0 +1,19 @@
+class Solution {
+public:
+    long long pickGifts(vector<int>& gifts, int k) {
+        long result = 0;
+        priority_queue<int> heap;
+        for(const int gift: gifts) {
+            heap.push(gift);
+        }
+        for(int i = 0; i < k; i++) {
+            const int squared = sqrt(heap.top());
+            heap.pop();
+            heap.push(squared);
+        }
+        while(!heap.empty()) {
+            result += heap.top(), heap.pop();
+        }
+        return result;
+    }
+};
