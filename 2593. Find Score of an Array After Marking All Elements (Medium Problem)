@@ -1,0 +1,26 @@
+class Solution {
+public:
+    long long findScore(vector<int>& nums) {
+        const int n = nums.size();
+        vector<bool> marked(n);
+        set<pair<int, int>> indices;
+        long long score = 0;
+        for(int i = 0; i < n; i++) {
+            indices.insert({nums[i], i});
+        }
+        for(const auto& [num, i]: indices) {
+            if(marked[i]) {
+                continue;
+            }
+            if(i > 0) {
+                marked[i - 1] = true;
+            }
+            if(i + 1 < n) {
+                marked[i + 1] = true;
+            }
+            marked[i] = true;
+            score += num;
+        }
+        return score;
+    }
+};
