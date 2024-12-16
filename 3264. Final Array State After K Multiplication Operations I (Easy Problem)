@@ -1,0 +1,18 @@
+class Solution {
+public:
+    vector<int> getFinalState(vector<int>& nums, int k, int multiplier) {
+        const int n = nums.size();
+        while(k--) {
+            int minElement = INT_MAX;
+            int index = 0;
+            for(int i = 0; i < n; i++) {
+                if(nums[i] < minElement) {
+                    minElement = nums[i];
+                    index = i;
+                }
+            }
+            nums[index] = nums[index] * multiplier;
+        }
+        return nums;
+    }
+};
