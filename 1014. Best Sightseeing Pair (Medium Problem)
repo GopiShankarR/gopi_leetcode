@@ -1,0 +1,12 @@
+class Solution {
+public:
+    int maxScoreSightseeingPair(vector<int>& values) {
+        int result = 0;
+        int bestPrev = 0;
+        for(const int i: values) {
+            result = max(result, i + bestPrev);
+            bestPrev = max(bestPrev, i) - 1;
+        }
+        return result;
+    }
+};
