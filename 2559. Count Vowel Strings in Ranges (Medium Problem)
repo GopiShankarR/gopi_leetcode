@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<int> vowelStrings(vector<string>& words, vector<vector<int>>& queries) {
+        vector<int> result;
+        const int n = words.size();
+        vector<int> prefix(n + 1);
+        for(int i = 0; i < n; i++) {
+            prefix[i + 1] += prefix[i] + sandeVowel(words[i]);
+        }
+        for(const vector<int>& query: queries) {
+            const int l = query[0];
+            const int r = query[1];
+            result.push_back(prefix[r + 1] - prefix[l]);
+        }
+        return result;
+    }
+
+private:
+    bool sandeVowel(const string& word) {
+        return isVowel(word.front()) && isVowel(word.back());
+    }
+
+    bool isVowel(char c) {
+        static constexpr string_view kVowels = "aeiou";
+        return kVowels.find(c) != string_view::npos;
+    }
+};
