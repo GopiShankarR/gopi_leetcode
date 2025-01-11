@@ -1,0 +1,15 @@
+class Solution {
+public:
+    bool canConstruct(string s, int k) {
+        const int n = s.length();
+        if(n < k) {
+            return false;
+        }
+        int bit = 0;
+        for(char c: s) {
+            bit ^= (1 << (c - 'a'));
+        }
+        int oddCount = __builtin_popcount(bit);
+        return oddCount <= k;
+    }
+};
