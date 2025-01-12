@@ -1,0 +1,14 @@
+class Solution {
+public:
+    vector<int> findDisappearedNumbers(vector<int>& nums) {
+        const int n = nums.size();
+        vector<int> result;
+        unordered_set<int> array(nums.begin(), nums.end());
+        for(int i = 1; i <= n; i++) {
+            if(array.find(i) == array.end()) {
+                result.push_back(i);
+            }
+        }
+        return result;
+    }
+};
