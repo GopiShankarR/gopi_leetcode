@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<int> findThePrefixCommonArray(vector<int>& A, vector<int>& B) {
+        vector<int> result;
+        const int n = A.size();
+        int prefix = 0;
+        vector<int> count(n + 1);
+        for(int i = 0; i < n; i++) {
+            if(++count[A[i]] == 2) {
+                prefix++;
+            }
+            if(++count[B[i]] == 2) {
+                prefix++;
+            }
+            result.push_back(prefix);
+        }
+        return result;
+    }
+};
