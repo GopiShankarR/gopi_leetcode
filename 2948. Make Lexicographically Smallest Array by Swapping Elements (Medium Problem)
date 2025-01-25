@@ -1,0 +1,31 @@
+class Solution {
+public:
+    vector<int> lexicographicallySmallestArray(vector<int>& nums, int limit) {
+        map<int, queue<int>> queueLevel;
+        unordered_map<int, int> levelMap;
+        vector<int> sortedNums(nums.begin(), nums.end());
+        sort(sortedNums.begin(), sortedNums.end());
+        const int n = nums.size();
+
+        int currentLevel = 0;
+        queueLevel[currentLevel].push(sortedNums[0]);
+        levelMap[sortedNums[0]] = currentLevel;
+
+        for(int i = 1; i < n; i++) {
+            if(sortedNums[i] - queueLevel[currentLevel].back() <= limit) {
+                queueLevel[currentLevel].push(sortedNums[i]);
+            } else {
+                currentLevel++;
+                queueLevel[currentLevel].push(sortedNums[i]);
+            }
+            levelMap[sortedNums[i]] = currentLevel;
+        }
+
+        for(int i = 0; i < n; i++) {
+            int elementLevel = levelMap[nums[i]];
+            nums[i] = queueLevel[elementLevel].front();
+            queueLevel[elementLevel].pop();
+        }
+        return nums;
+    }
+};
