@@ -1,0 +1,28 @@
+class Solution {
+public:
+    bool wordPattern(string pattern, string s) {
+        unordered_map<char, string> charToWord;
+        unordered_map<string, char> wordToChar;
+        const int m = pattern.size();
+        const int n = s.size();
+        stringstream ss(s);
+        string word;
+        int i{};
+        while(ss >> word) {
+            if(i == m) {
+                return false;
+            }
+            char currentChar = pattern[i];
+            if(!charToWord.contains(currentChar) && !wordToChar.contains(word)) {
+                charToWord[currentChar] = word;
+                wordToChar[word] = currentChar;
+            } else {
+                if(charToWord[currentChar] != word || wordToChar[word] != currentChar) {
+                    return false;
+                }
+            }
+            i++;
+        }
+        return i == m;
+    }
+};
