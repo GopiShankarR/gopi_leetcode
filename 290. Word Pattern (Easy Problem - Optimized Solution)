@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool wordPattern(string pattern, string s) {
+        const int m = pattern.size();
+        const int n = s.size();
+        vector<string> v;
+        string word;
+        stringstream ss(s);
+        while(ss >> word) {
+            v.push_back(word);
+        }
+        const int vectorSize = v.size();
+        if(m != vectorSize) {
+            return false;
+        }
+        unordered_map<char, string> charToWord;
+        unordered_map<string, char> wordToChar;
+        for(int i = 0; i < vectorSize; i++) {
+            if(charToWord.find(pattern[i]) != charToWord.end() && charToWord[pattern[i]] != v[i]) {
+                return false;
+            } else if(wordToChar.find(v[i]) != wordToChar.end() && wordToChar[v[i]] != pattern[i]) {
+                return false;
+            }
+            charToWord[pattern[i]] = v[i];
+            wordToChar[v[i]] = pattern[i];
+        }
+        return true;
+    }
+};
