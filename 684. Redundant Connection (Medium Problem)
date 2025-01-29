@@ -1,0 +1,39 @@
+class Solution {
+public:
+    vector<int> findRedundantConnection(vector<vector<int>>& edges) {
+        unordered_map<int, vector<int>> map;
+        auto isConnected = [&](int u, int v) {
+            unordered_set<int> visited;
+            stack<int> st;
+            st.push(u);
+            while(!st.empty()) {
+                int node = st.top();
+                st.pop();
+
+                if(visited.count(node)) {
+                    continue;
+                }
+                visited.insert(node);
+
+                if(node == v) {
+                    return true;
+                }
+
+                for(int n: map[node]) {
+                    st.push(n);
+                }
+            }
+            return false;
+        };
+        for(const auto& edge: edges) {
+            int u = edge[0];
+            int v = edge[1];
+            if(map.count(u) && map.count(v) && isConnected(u, v)) {
+                return edge;
+            }
+            map[u].push_back(v);
+            map[v].push_back(u);
+        }
+        return {};
+    }
+};
