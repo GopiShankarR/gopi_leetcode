@@ -1,0 +1,28 @@
+class Solution {
+public:
+    vector<string> findWords(vector<string>& words) {
+        vector<string> result;
+        const int n = words.size();
+        char row1[10] = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'};
+        char row2[9] = {'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'};
+        char row3[7] = {'z', 'x', 'c', 'v', 'b', 'n', 'm'};
+        for(int i = 0; i <n; i++) {
+            int word1 = 0, word2 = 0, word3 = 0;
+            string curr = words[i];
+            for(char c: curr) {
+                c = tolower(c);
+                if(find(row1, row1 + 10, c) != row1 + 10) {
+                    word1++;
+                } else if(find(row2, row2 + 9, c) != row2 + 9) {
+                    word2++;
+                } else {
+                    word3++;
+                }
+            }
+            if((word1 && !word2 && !word3) || (!word1 && word2 && !word3) || (!word1 && !word2 && word3)) {
+                result.push_back(curr);
+            }
+        }
+        return result;
+    }
+};
