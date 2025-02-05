@@ -1,0 +1,24 @@
+class Solution {
+public:
+    bool areAlmostEqual(string s1, string s2) {
+        const int n = s1.length();
+        int i = -1, j = -1, result = 0;
+        for(int k = 0; k < n; k++) {
+            if(s1[k] != s2[k]) {
+                result ++;
+                if(i == -1) {
+                    i = k;
+                } else if(j == -1) {
+                    j = k;
+                }
+            }
+        }
+        if(result == 0) {
+            return true;
+        }
+        if(result == 2 && s1[i] == s2[j] && s1[j] == s2[i]) {
+            return true;
+        }
+        return false;
+    }
+};
