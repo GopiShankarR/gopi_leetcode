@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int tupleSameProduct(vector<int>& nums) {
+        int result = 0;
+        unordered_map<int, int> hashMap;
+        const int n = nums.size();
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < i; j++) {
+                result += hashMap[nums[i] * nums[j]]++ * 8;
+            }
+        }
+        return result;
+    }
+};
