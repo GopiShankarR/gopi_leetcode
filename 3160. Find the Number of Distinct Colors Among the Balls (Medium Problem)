@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<int> queryResults(int limit, vector<vector<int>>& queries) {
+        vector<int> result;
+        unordered_map<int, int> hashMap1;
+        unordered_map<int, int> hashMap2;
+        for(const vector<int>&i: queries) {
+            const int ball = i[0];
+            const int color = i[1];
+            if(const auto it = hashMap1.find(ball); it != hashMap1.cend()) {
+                const int prevColor = it -> second;
+                if(--hashMap2[prevColor] == 0) {
+                    hashMap2.erase(prevColor);
+                }
+            }
+            hashMap1[ball] = color;
+            hashMap2[color]++;
+            result.push_back(hashMap2.size());
+        }
+        return result;
+    }
+};
