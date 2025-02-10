@@ -1,0 +1,22 @@
+class Solution {
+public:
+    string clearDigits(string s) {
+        string result;
+        stack<char> st;
+        for(const char c: s) {
+            if(isdigit(c)) {
+                if(!st.empty() && !isdigit(st.top())) {
+                    st.pop();
+                }
+            } else {
+                st.push(c);
+            }
+        }
+        while(!st.empty()) {
+            result += st.top();
+            st.pop();
+        }
+        reverse(result.begin(), result.end());
+        return result;
+    }
+};
