@@ -1,0 +1,35 @@
+class Solution {
+public:
+    string removeOccurrences(string s, string part) {
+        stack<char> st;
+        const int n = s.length();
+        const int size = part.size();
+        string result = "";
+        for(int i = 0; i < n; i++) {
+            st.push(s[i]);
+            int count = size - 1;
+            stack<char>t;
+            while(st.size() != 0 && count >= 0) {
+                if(part[count] == st.top()) {
+                    t.push(st.top());
+                    st.pop();
+                } else {
+                    break;
+                }
+                count--;
+            }
+            if(count >= 0) {
+                while(t.size() != 0) {
+                    st.push(t.top());
+                    t.pop();
+                }
+            }
+        }
+        while(st.size() != 0) {
+            result.push_back(st.top());
+            st.pop();
+        }
+        reverse(result.begin(), result.end());
+        return result;
+    }
+};
