@@ -1,0 +1,17 @@
+class Solution {
+public:
+    string removeOccurrences(string s, string part) {
+        const int n = s.length();
+        const int size = part.size();
+        string result;
+        for(int i = 0; i < n; i++) {
+            result.push_back(s[i]);
+            while(result.find(part) < result.length()) {
+                for(int i = 0; i < size; i++) {
+                    result.pop_back();
+                }
+            }
+        }
+        return result;
+    }
+};
