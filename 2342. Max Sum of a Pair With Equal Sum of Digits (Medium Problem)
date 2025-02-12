@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int maximumSum(vector<int>& nums) {
+        unordered_map<int, priority_queue<int>> hashMap;
+        int result = -1;
+        for(int i: nums) {
+            int sum = 0;
+            int num = i;
+            while(num) {
+                sum += num % 10;
+                num = num / 10;
+            }
+            hashMap[sum].push(i);
+        }
+        for(auto i: hashMap) {
+            if(i.second.size() > 1) {
+                int sum = i.second.top();
+                i.second.pop();
+                sum += i.second.top();
+                result = max(result, sum);
+            }
+        }
+        return result;
+    }
+};
