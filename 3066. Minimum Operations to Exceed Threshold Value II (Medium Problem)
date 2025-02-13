@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int minOperations(vector<int>& nums, int k) {
+        int result = 0;
+        priority_queue<long, vector<long>, greater<>> heap;
+        for(const int num: nums) {
+            heap.push(num);
+        }
+        while(heap.size() > 1 && heap.top() < k) {
+            const int x = heap.top();
+            heap.pop();
+            const int y = heap.top();
+            heap.pop();
+            heap.push(min(x, y) * 2L + max(x, y));
+            result++;
+        }
+        return result;
+    }
+};
