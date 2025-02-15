@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int punishmentNumber(int n) {
+        int result = 0;
+        for(int i = 1; i <= n; i++) {
+            if(findSquares(0, 0, to_string(i * i), 0, i)) {
+                result += i * i;
+            }
+        }
+        return result;
+    }
+
+private:
+    bool findSquares(int acc, int run, const string& numChars, int s, int target) {
+        if(s == numChars.length()) {
+            return target == acc + run;
+        }
+        const int d = numChars[s] - '0';
+        return findSquares(acc, run * 10 + d, numChars, s + 1, target) || findSquares(acc + run, d, numChars, s + 1, target);
+    }
+};
