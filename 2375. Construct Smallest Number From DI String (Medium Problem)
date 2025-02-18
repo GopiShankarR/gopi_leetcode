@@ -1,0 +1,23 @@
+class Solution {
+public:
+    string smallestNumber(string pattern) {
+        string result;
+        stack<char> st{{'1'}};
+        for(const char c: pattern) {
+            char maxChar = st.top();
+            if(c == 'I') {
+                while(!st.empty()) {
+                    maxChar = max(maxChar, st.top());
+                    result += st.top();
+                    st.pop();
+                }
+            }
+            st.push(maxChar + 1);
+        }
+        while(!st.empty()) {
+            result += st.top();
+            st.pop();
+        }
+        return result;
+    }
+};
