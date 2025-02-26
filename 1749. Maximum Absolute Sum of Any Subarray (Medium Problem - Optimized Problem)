@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int maxAbsoluteSum(vector<int>& nums) {
+        int result = 0;
+        int maxPrefix = 0, minPrefix = 0;
+        for(const int num: nums) {
+            result += num;
+            maxPrefix = max(maxPrefix, result);
+            minPrefix = min(minPrefix, result);
+        }
+        return maxPrefix - minPrefix;
+    }
+};
