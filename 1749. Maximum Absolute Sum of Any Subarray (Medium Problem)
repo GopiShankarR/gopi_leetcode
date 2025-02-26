@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int maxAbsoluteSum(vector<int>& nums) {
+        int result = INT_MIN;
+        int maxSum = 0, minSum = 0;
+        for(const int num: nums) {
+            maxSum = max(maxSum + num, num);
+            minSum = min(minSum + num, num);
+            result = max({result, maxSum, -minSum});
+            cout << "num-> " << num << " maxSum-> " << maxSum << " minSum-> " << minSum << " result " << result << endl;
+        }
+        return result;
+    }
+};
