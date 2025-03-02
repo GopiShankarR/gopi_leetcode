@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<vector<int>> mergeArrays(vector<vector<int>>& nums1, vector<vector<int>>& nums2) {
+        constexpr int maxVal = 1000;
+        vector<vector<int>> result;
+        vector<int> count(maxVal + 1);
+        addCount(nums1, count);
+        addCount(nums2, count);
+        for(int i = 1; i <= maxVal; i++) {
+            if(count[i] > 0) {
+                result.push_back({i, count[i]});
+            }
+        }
+        return result;
+    }
+private:
+    void addCount(const vector<vector<int>>& nums, vector<int>& count) {
+        for(const vector<int>& i: nums) {
+            const int id = i[0];
+            const int val = i[1];
+            count[id] += val;
+        }
+    }
+};
