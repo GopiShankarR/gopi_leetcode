@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<int> pivotArray(vector<int>& nums, int pivot) {
+        const int n = nums.size();
+        vector<int> result(n);
+        int c = 0;
+        int pivotCount = 0;
+        for(int i = 0; i < n; i++) {
+            if(nums[i] < pivot) {
+                result[pivotCount++] = nums[i];
+            } else if(nums[i] == pivot) {
+                c++;
+            }
+        }
+        while(c--) {
+            result[pivotCount++] = pivot;
+        }
+        for(int i = 0; i < n; i++) {
+            if(nums[i] > pivot) {
+                result[pivotCount] = nums[i];
+                pivotCount++;
+            }
+        }
+        return result;
+    }
+};
