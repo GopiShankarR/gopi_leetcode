@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<int> findMissingAndRepeatedValues(vector<vector<int>>& grid) {
+        int a = 0, b = 0;
+        const int n = grid.size();
+        const int squared = n * n;
+        int total = (squared * (squared + 1)) / 2;
+        int sum = 0;
+        unordered_set<int> nums;
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < n; j++) {
+                if(nums.count(grid[i][j])) {
+                    a = grid[i][j];
+                } else {
+                    nums.insert(grid[i][j]);
+                    sum += grid[i][j];
+                }
+            }
+        }
+        b = total - sum;
+        return {a, b};
+    }
+};
