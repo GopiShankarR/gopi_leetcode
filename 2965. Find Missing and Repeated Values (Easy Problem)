@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<int> findMissingAndRepeatedValues(vector<vector<int>>& grid) {
+        const int n = grid.size();
+        const int square = n * n;
+        vector<int> count(square + 1);
+
+        for(const vector<int>& row: grid) {
+            for(const int i: row) {
+                count[i]++;
+            }
+        }
+        int repeat = -1, miss = -1;
+        for(int i = 0; i <= square; i++) {
+            if(count[i] == 2) {
+                repeat = i;
+            }
+            if(count[i] == 0) {
+                miss = i;
+            }
+        }
+        return {repeat, miss};
+    }
+};
