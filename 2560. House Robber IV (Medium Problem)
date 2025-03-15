@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int minCapability(vector<int>& nums, int k) {
+        int l = ranges::min(nums);
+        int r = ranges::max(nums);
+        while(l < r) {
+            const int m = (l + r) / 2;
+            if(stolenHouses(nums, m) >= k) {
+                r = m;
+            } else {
+                l = m + 1;
+            }
+        }
+        return l;
+    }
+
+private:
+    int stolenHouses(vector<int>& nums, int cap) {
+        int sh = 0;
+        const int n = nums.size();
+        for(int i = 0; i < n; i++) {
+            if(nums[i] <= cap) {
+                sh++;
+                i++;
+            }
+        }
+        return sh;
+    }
+};
