@@ -1,0 +1,25 @@
+class Solution {
+public:
+    long long repairCars(vector<int>& ranks, int cars) {
+        long l = 0;
+        long r = static_cast<long>(ranges::min(ranks)) * cars * cars;
+        while(l < r) {
+            const long mid = (l + r) / 2;
+            if(fixedCars(ranks, mid) >= cars) {
+                r = mid;
+            } else {
+                l = mid + 1;
+            }
+        }
+        return l;
+    }
+
+private:
+    long fixedCars(const vector<int>& ranks, long mins) {
+        long fixedCars = 0;
+        for(const int r: ranks) {
+            fixedCars += sqrt(mins / r);
+        }
+        return fixedCars;
+    }
+};
