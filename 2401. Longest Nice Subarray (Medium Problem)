@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int longestNiceSubarray(vector<int>& nums) {
+        int result = 0;
+        const int n = nums.size();
+        int used = 0;
+        for(int l = 0, r = 0; r < n; r++) {
+            while(used & nums[r]) {
+                used ^= nums[l++];
+            }
+            used |= nums[r];
+            result = max(result, r - l + 1);
+        }
+        return result;
+    }
+};
