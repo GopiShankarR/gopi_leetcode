@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int countKConstraintSubstrings(string s, int k) {
+        const int n = s.length();
+        int result = 0;
+        vector<int> count(2);
+        for(int l = 0, r = 0; r < n; r++) {
+            count[s[r] - '0']++;
+            while(count[0] > k && count[1] > k) {
+                count[s[l++] - '0']--;
+            }
+            result += r - l + 1;
+        }
+        return result;
+    }
+};
