@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int countDays(int days, vector<vector<int>>& meetings) {
+        int free = 0;
+        int prev = 0;
+        sort(meetings.begin(), meetings.end());
+        for(const vector<int>&meeting: meetings) {
+            const int start = meeting[0];
+            const int end = meeting[1];
+            if(start > prev) {
+                free += start - prev - 1;
+            }
+            prev = max(prev, end);
+        }
+        return free + max(0, days - prev);
+    }
+};
