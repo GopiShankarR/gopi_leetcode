@@ -1,0 +1,31 @@
+class Solution {
+public:
+    bool checkValidCuts(int n, vector<vector<int>>& rectangles) {
+        vector<pair<int, int>> xs;
+        vector<pair<int, int>> ys;
+        for(const vector<int> rectangle: rectangles) {
+            const int startX = rectangle[0];
+            const int startY = rectangle[1];
+            const int endX = rectangle[2];
+            const int endY = rectangle[3];
+            xs.emplace_back(startX, endX);
+            ys.emplace_back(startY, endY);
+        }
+        return max(merged(xs), merged(ys)) >= 3;
+    }
+private:
+    int merged(vector<pair<int, int>>& intervals) {
+        int count = 0;
+        int prevEnd = 0;
+        ranges::sort(intervals);
+        for(const auto& [start, end]: intervals) {
+            if(start < prevEnd) {
+                prevEnd = max(prevEnd, end);
+            } else {
+                prevEnd = end;
+                count++;
+            }
+        }
+        return count;
+    }
+};
