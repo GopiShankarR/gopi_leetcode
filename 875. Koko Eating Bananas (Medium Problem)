@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int minEatingSpeed(vector<int>& piles, int h) {
+        int left = 1;
+        int right = ranges::max(piles);
+        int result = right;
+        while(left < right) {
+            const int k = (left + right) / 2;
+            if(hours(piles, k) <= h) {
+                right = k;
+            } else {
+                left = k + 1;
+            }
+        }
+        return left;
+    }
+private:
+    int hours(const vector<int>& piles, int k) {
+        return accumulate(piles.begin(), piles.end(), 0, [&](int acc, int pile) {
+            return acc + (pile - 1) / k + 1;
+        });
+    }
+};
