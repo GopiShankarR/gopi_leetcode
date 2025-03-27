@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int maximizeSum(vector<int>& nums, int k) {
+        const int n = nums.size();
+        int result = 0;
+        while(k > 0) {
+            int maxElement = *max_element(nums.begin(), nums.end());
+            result += maxElement;
+            nums.erase(remove(nums.begin(), nums.end(), maxElement), nums.end());
+            nums.push_back(maxElement + 1);
+            k--;
+        }
+        return result;
+    }
+};
