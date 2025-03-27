@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int maximizeSum(vector<int>& nums, int k) {
+        int result = 0;
+        priority_queue<int> pq(nums.begin(), nums.end());
+        while(k--) {
+            int maxElement = pq.top();
+            pq.pop();
+            result += maxElement;
+            pq.push(maxElement + 1);
+        }
+        return result;
+    }
+};
