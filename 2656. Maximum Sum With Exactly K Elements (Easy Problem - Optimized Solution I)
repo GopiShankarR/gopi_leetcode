@@ -1,0 +1,7 @@
+class Solution {
+public:
+    int maximizeSum(vector<int>& nums, int k) {
+        const int maxElement = ranges::max(nums);
+        return maxElement * k + k * (k - 1) / 2;
+    }
+};
