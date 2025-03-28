@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int numSubarraysWithSum(vector<int>& nums, int goal) {
+        int result = 0;
+        int prefix = 0;
+        unordered_map<int, int> count{{0, 1}};
+        for(const int n: nums) {
+            prefix += n;
+            if(const auto it = count.find(prefix - goal); it != count.cend()) {
+                result += it -> second;
+            }
+            count[prefix]++;
+        }
+        return result;
+    }
+};
