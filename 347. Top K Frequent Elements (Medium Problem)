@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int, int> hashMap;
+        vector<int> result;
+        for(int i: nums) {
+            hashMap[i]++;
+        }
+        priority_queue<pair<int, int>> pq;
+        for(auto i: hashMap) {
+            pq.push({i.second, i.first});
+        }
+        for(int i = 0; i < k; i++) {
+            result.push_back(pq.top().second);
+            pq.pop();
+        }
+        return result;
+    }
+};
