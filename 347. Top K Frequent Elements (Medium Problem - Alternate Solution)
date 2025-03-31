@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int, int> hashMap;
+        const int n = nums.size();
+        vector<int> result;
+        vector<vector<int>> bucket(n + 1);
+        for(const int i: nums) {
+            hashMap[i]++;
+        }
+        for(const auto& [num, freq]: hashMap) {
+            bucket[freq].push_back(num);
+        }
+        for(int i = n; i > 0; i--) {
+            for(const int num: bucket[i]) {
+                result.push_back(num);
+            }
+            if(result.size() == k) {
+                return result;
+            }
+        }
+        throw;
+    }
+};
