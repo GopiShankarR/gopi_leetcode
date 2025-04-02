@@ -1,0 +1,12 @@
+class Solution {
+public:
+    long long maximumTripletValue(vector<int>& nums) {
+        long maxTriplet = 0, maxDifference = 0, maxElement = 0;
+        for(long n: nums) {
+            maxTriplet = max(maxTriplet, maxDifference * n);
+            maxDifference = max(maxDifference, maxElement - n);
+            maxElement = max(maxElement, n);
+        }
+        return maxTriplet;
+    }
+};
