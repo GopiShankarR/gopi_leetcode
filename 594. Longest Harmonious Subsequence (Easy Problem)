@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int findLHS(vector<int>& nums) {
+        int result = 0;
+        unordered_map<int, int> hashMap;
+        for(const int n: nums) {
+            hashMap[n]++;
+        }
+        for(const auto& [n, freq]: hashMap) {
+            if(const auto it = hashMap.find(n + 1); it != hashMap.cend()) {
+                result = max(result, freq + it -> second);
+            }
+        }
+        return result;
+    } 
+};
