@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int minOperations(vector<int>& nums, int k) {
+        const unordered_set<int> numsSet{nums.begin(), nums.end()};
+        const int minimumNum = ranges::min(nums);
+        if(minimumNum < k) {
+            return -1;
+        }
+        if(minimumNum > k) {
+            return numsSet.size();
+        }
+        return numsSet.size() - 1;
+    }
+};
