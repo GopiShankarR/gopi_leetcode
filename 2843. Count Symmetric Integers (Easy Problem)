@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int countSymmetricIntegers(int low, int high) {
+        int result = 0;
+        for(int n = low; n <= high; n++) {
+            if(isSymmetric(n)) {
+                result++;
+            }
+        }
+        return result;
+    }
+private:
+    bool isSymmetric(int n) {
+        if(n >= 10 && n <= 99) {
+            return n / 10 == n % 10;
+        }
+        if(n >= 1000 && n <= 9999) {
+            const int l = n / 100;
+            const int r = n % 100;
+            return l / 10 + l % 10 == r / 10 + r % 10;
+        }
+        return false;
+    }
+};
