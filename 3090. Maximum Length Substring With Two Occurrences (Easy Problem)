@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int maximumLengthSubstring(string s) {
+        int result = 0;
+        vector<int> count(26);
+        const int n = s.length();
+        for(int l = 0, r = 0; r < n; r++) {
+            count[s[r] - 'a']++;
+            while(count[s[r] - 'a'] > 2) {
+                count[s[l++] - 'a']--;
+            }
+            result = max(result, r - l + 1);
+        }
+        return result;
+    }
+};
