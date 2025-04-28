@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        map<int, int> hashMap;
+        const int n = nums.size();
+        int maxLength = 0, currentLength = 0, prev = INT_MIN;
+        for(int i = 0; i < n; i++) {
+            hashMap[nums[i]]++;
+        }
+        for(auto i: hashMap) {
+            if(prev == i.first - 1) {
+                currentLength++;
+            } else {
+                currentLength = 1;
+            }
+            maxLength = max(currentLength, maxLength);
+            prev = i.first;
+        }
+        return maxLength;
+    }
+};
