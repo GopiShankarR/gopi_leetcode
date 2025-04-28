@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        unordered_map<int, int> hashMap;
+        int result = 0;
+        for(int n: nums) {
+            if(!hashMap[n]) {
+                hashMap[n] = hashMap[n - 1] + hashMap[n + 1] + 1;
+                hashMap[n - hashMap[n - 1]] = hashMap[n];
+                hashMap[n + hashMap[n + 1]] = hashMap[n];
+                result = max(result, hashMap[n]);
+            }
+        }
+        return result;
+    }
+};
