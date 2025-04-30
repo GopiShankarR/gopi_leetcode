@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int countCompleteSubarrays(vector<int>& nums) {
+        constexpr int kMax = 2000;
+        const int totalDist = unordered_set<int>(nums.begin(), nums.end()).size();
+        int result = 0;
+        int distinct = 0;
+        vector<int> count(kMax + 1);
+        int l = 0;
+        for(const int n: nums) {
+            if(++count[n] == 1) {
+                distinct++;
+            }
+            while(distinct == totalDist) {
+                if(--count[nums[l++]] == 0) {
+                    distinct--;
+                }
+            }
+            result += l;
+        }
+        return result;
+    }
+};
