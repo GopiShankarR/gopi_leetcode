@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int numEquivDominoPairs(vector<vector<int>>& dominoes) {
+        int result = 0;
+        unordered_map<int, int> hashMap;
+        for(vector<int>& d: dominoes) {
+            int key = min(d[0], d[1]) * 10 + max(d[0], d[1]);
+            result += hashMap[key];
+            hashMap[key]++;
+        }
+        return result;
+    }
+};
