@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        const int n = height.size();
+        int result = 0;
+        int l = 0, r = n - 1;
+        if(n == 0) {
+            return 0;
+        }
+        int leftMax = height[l];
+        int rightMax = height[r];
+        while(l < r) {
+            if(leftMax < rightMax) {
+                l += 1;
+                leftMax = max(leftMax, height[l]);
+                result += leftMax - height[l];
+            } else {
+                r -= 1;
+                rightMax = max(rightMax, height[r]);
+                result += rightMax - height[r];
+            }
+        }
+        return result;
+    }
+};
