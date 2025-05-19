@@ -1,0 +1,17 @@
+class Solution {
+public:
+    string triangleType(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        if(nums[0] + nums[1] <= nums[2]) {
+            return "none";
+        }
+        unordered_set<int> hashSet(nums.begin(), nums.end());
+        if(hashSet.size() == 1) {
+            return "equilateral";
+        }
+        if(hashSet.size() == 2) {
+            return "isosceles";
+        }
+        return "scalene";
+    }
+};
