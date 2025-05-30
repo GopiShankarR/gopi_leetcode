@@ -1,0 +1,10 @@
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        n = len(nums) + 1
+        hash = [0] * (n + 1)
+        for i in range(n - 1):
+            hash[nums[i]] += 1
+        for i in range(0, n):
+            if hash[i] == 0:
+                return i
+        return -1
