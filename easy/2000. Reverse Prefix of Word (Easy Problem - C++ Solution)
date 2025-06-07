@@ -1,0 +1,23 @@
+class Solution {
+public:
+    string reversePrefix(string word, char ch) {
+        const int n = word.length();
+        int index = 0;
+        stack<char> st;
+        for(int i = 0; i < n; i++) {
+            if(word[i] == ch) {
+                index = i;
+                break;
+            }
+        }
+        for(int i = 0; i <= index; i++) {
+            st.push(word[i]);
+        }
+        for(int i = 0; i <= index; i++) {
+            char c = st.top();
+            word[i] = c;
+            st.pop();
+        }
+        return word;
+    }
+};
