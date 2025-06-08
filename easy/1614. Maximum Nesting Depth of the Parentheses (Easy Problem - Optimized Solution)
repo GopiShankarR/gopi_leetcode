@@ -1,0 +1,11 @@
+class Solution:
+    def maxDepth(self, s: str) -> int:
+        n = len(s)
+        count, maxCount = 0, 0
+        for c in s:
+            if c == '(':
+                count += 1
+                maxCount = count if count > maxCount else maxCount
+            elif c == ')':
+                count -= 1
+        return maxCount
