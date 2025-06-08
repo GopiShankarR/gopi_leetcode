@@ -1,0 +1,9 @@
+class Solution:
+    def smallestNumber(self, pattern: str) -> str:
+        n = len(pattern)
+        result, st = [], []
+        for i in range(n + 1):
+            st.append(i + 1)
+            while st and (i == n or pattern[i] == 'I'):
+                result.append(str(st.pop()))
+        return ''.join(result)
