@@ -1,0 +1,17 @@
+class Solution:
+    def checkSubarraySum(self, nums: List[int], k: int) -> bool:
+        n = len(nums)
+        sum = 0
+        mod = 0
+        length = 0
+        hashMap = {0: -1}
+        for i in range(n):
+            sum += nums[i]
+            mod = sum % k
+            if mod in hashMap:
+                length = i - hashMap[mod]
+                if length >= 2:
+                    return True
+            if mod not in hashMap:
+                hashMap[mod] = i
+        return False
