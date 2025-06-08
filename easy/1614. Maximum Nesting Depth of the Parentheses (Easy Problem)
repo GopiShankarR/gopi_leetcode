@@ -1,0 +1,14 @@
+class Solution:
+    def maxDepth(self, s: str) -> int:
+        n = len(s)
+        # st = []
+        count, maxCount = 0, 0
+        for c in s:
+            if c == '(':
+                # st.append(c)
+                count += 1
+                maxCount = max(maxCount, count)
+            elif c == ')':
+                count -= 1
+                # st.pop()
+        return maxCount
