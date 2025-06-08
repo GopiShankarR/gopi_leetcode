@@ -1,0 +1,12 @@
+class Solution:
+    def finalPrices(self, prices: List[int]) -> List[int]:
+        n = len(prices)
+        st = []
+        # minVal = 0
+        for i in range(0, n):
+            for j in range(i, n):
+                if j > i and prices[j] <= prices[i]:
+                    print(prices[j], prices[i])
+                    prices[i] = prices[i] - prices[j]
+                    break
+        return prices
