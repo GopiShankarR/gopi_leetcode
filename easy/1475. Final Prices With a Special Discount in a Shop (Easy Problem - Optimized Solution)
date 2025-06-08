@@ -1,0 +1,10 @@
+class Solution:
+    def finalPrices(self, prices: List[int]) -> List[int]:
+        n = len(prices)
+        st = []
+        for i in range(0, n):
+            while st and prices[i] <= prices[st[-1]]:
+                index = st.pop()
+                prices[index] -= prices[i]
+            st.append(i)
+        return prices
