@@ -1,0 +1,28 @@
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        m = len(s)
+        n = len(t)
+        if n == "":
+            return ""
+        l = 0
+        length, minLength = [-1, -1], float('inf')
+        hashMapT = {}
+        hashMapS = {}
+        for c in t:
+            hashMapT[c] = 1 + hashMapT.get(c, 0)
+        have, need = 0, len(hashMapT)
+        for r in range(m):
+            c = s[r]
+            hashMapS[c] = 1 + hashMapS.get(c, 0)
+            if c in hashMapT and hashMapS[c] == hashMapT[c]:
+                have += 1
+            while have == need:
+                if (r - l + 1) < minLength:
+                    length = [l, r]
+                    minLength = (r - l + 1)
+                hashMapS[s[l]] -= 1
+                if s[l] in hashMapT and hashMapS[s[l]] < hashMapT[s[l]]:
+                    have -=1
+                l += 1
+        l, r = length
+        return s[l: r + 1] if minLength != float("inf") else ""
