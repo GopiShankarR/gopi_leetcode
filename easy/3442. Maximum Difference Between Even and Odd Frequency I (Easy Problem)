@@ -1,0 +1,6 @@
+class Solution:
+    def maxDifference(self, s: str) -> int:
+        count = Counter(s)
+        maxOdd = max((freq for freq in count.values() if freq % 2 == 1), default=0)
+        maxEven = min((freq for freq in count.values() if freq % 2 == 0), default=0)
+        return maxOdd - maxEven
