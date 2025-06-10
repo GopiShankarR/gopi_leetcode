@@ -1,0 +1,19 @@
+class Solution:
+    def relativeSortArray(self, arr1: List[int], arr2: List[int]) -> List[int]:
+        result = []
+        counter1 = {}
+        m = len(arr1)
+        n = len(arr2)
+        
+        for i in range(m):
+            if arr1[i] not in counter1:
+                counter1[arr1[i]] = 1
+            else:
+                counter1[arr1[i]] += 1
+        for number in arr2:
+            result.extend([number] * counter1[number])
+            del counter1[number]
+        
+        for number in sorted(counter1.keys()):
+            result.extend([number] * counter1[number])
+        return result
