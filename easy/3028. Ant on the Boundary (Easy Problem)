@@ -1,0 +1,13 @@
+class Solution:
+    def returnToBoundaryCount(self, nums: List[int]) -> int:
+        n = len(nums)
+        hashMap = {0: -1}
+        totalSum = 0
+        count = 0
+        for i in range(n):
+            totalSum += nums[i]
+            if totalSum not in hashMap:
+                hashMap[totalSum] = i
+            elif totalSum == 0 and totalSum in hashMap:
+                count += 1
+        return count
