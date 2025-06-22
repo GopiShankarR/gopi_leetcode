@@ -1,0 +1,13 @@
+class Solution:
+    def largeGroupPositions(self, s: str) -> List[List[int]]:
+        result = []
+        n = len(s)
+        i, j = 0, 1
+        while i < j and j < n:
+            while j <= n - 1 and s[i] == s[j]:
+                j += 1
+            if j - i >= 3:
+                result.append([i, j - 1])
+            j += 1
+            i = j - 1
+        return result
