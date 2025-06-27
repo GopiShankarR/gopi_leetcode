@@ -1,0 +1,10 @@
+class Solution:
+    def repeatedNTimes(self, nums: List[int]) -> int:
+        n = len(nums)
+        hashMap = {}
+        for i in nums:
+            hashMap[i] = hashMap.get(i, 0) + 1
+
+        for values, count in hashMap.items():
+            if count >= n / 2:
+                return values
