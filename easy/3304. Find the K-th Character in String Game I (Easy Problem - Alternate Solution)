@@ -1,0 +1,17 @@
+class Solution:
+    def kthCharacter(self, k: int) -> str:
+        length = 1
+        while length < k:
+            length *= 2
+        
+        ch = 0
+        while length > 1:
+            half = length // 2
+            if k > half:
+                k -= half
+                ch += 1
+                if ch == 26:
+                    ch = 0
+            length = half
+        
+        return chr(ord('a') + ch)
