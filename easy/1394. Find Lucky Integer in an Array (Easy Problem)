@@ -1,0 +1,16 @@
+class Solution:
+    def findLucky(self, arr: List[int]) -> int:
+        hashMap = {}
+        n = len(arr)
+        currVal = -1
+        for i in arr:
+            if i not in hashMap:
+                hashMap[i] = 1
+            else:
+                hashMap[i] += 1
+        
+        for val, count in hashMap.items():
+            if val == count:
+                currVal = max(currVal, val) 
+
+        return currVal
