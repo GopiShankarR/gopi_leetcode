@@ -1,0 +1,15 @@
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        i, j = 0, 1
+        n = len(prices)
+        maxProf = 0
+
+        while i < j and i < n and j < n:
+            if prices[j] > prices[i]:
+                maxProf = max(maxProf, prices[j] - prices[i])
+                j += 1
+            else:
+                i += 1
+                j = i + 1
+        
+        return maxProf
