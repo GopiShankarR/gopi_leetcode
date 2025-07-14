@@ -1,0 +1,28 @@
+class Solution:
+    def closeStrings(self, word1: str, word2: str) -> bool:
+        hashMap1 = Counter(word1)
+        hashMap2 = Counter(word2)
+        totalVal1, totalVal2 = 0, 0
+        arr1, arr2 = [], []
+
+        for ch in word1:
+            if ch not in word2:
+                return False
+        
+        for ch in word2:
+            if ch not in word1:
+                return False
+
+        for key, val in hashMap1.items():
+            arr1.append(val)
+        
+        for key, val in hashMap2.items():
+            arr2.append(val)
+        
+        arr1.sort()
+        arr2.sort()
+
+        if arr1 == arr2:
+            return True
+        
+        return False
