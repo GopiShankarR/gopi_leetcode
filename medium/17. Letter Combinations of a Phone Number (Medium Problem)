@@ -1,0 +1,31 @@
+class Solution:
+    hashMap = {
+        "2": "abc",
+        "3": "def",
+        "4": "ghi",
+        "5": "jkl",
+        "6": "mno",
+        "7": "pqrs",
+        "8": "tuv",
+        "9": "wxyz"
+    }
+    def letterCombinations(self, digits: str) -> List[str]:
+        result = []
+        if len(digits) == 0:
+            return result
+
+        def rec(start, digits, result, curr):
+            n = len(digits)
+            if len(curr) == n:
+                result.append(curr)
+                return
+            
+            chars = self.hashMap[digits[start]]
+
+            for ch in chars:
+                rec(start + 1, digits, result, curr + ch)
+            
+            return
+
+        rec(0, digits, result, "")
+        return result
