@@ -1,0 +1,27 @@
+class Solution:
+    def isValid(self, word: str) -> bool:
+        n = len(word)
+        v = 0
+        c = 0
+        d = 0
+        sVowel = "aeiou"
+        sConsonant = "bcdfghjklmnpqrstvwxyz"
+        uConsonant = "BCDFGHJKLMNPQRSTVWXYZ"
+        uVowel = "AEIOU"
+        nums = "0123456789"
+
+        for ch in word:
+            if ch in sConsonant or ch in uConsonant:
+                if ch not in sVowel and ch not in uVowel:
+                    c += 1
+            elif ch in sVowel or ch in uVowel:
+                v += 1
+            elif ch in nums:
+                d += 1
+            else:
+                return False
+        
+        if n >= 3 and c >= 1 and v >= 1:
+            return True
+        
+        return False
