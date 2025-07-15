@@ -1,0 +1,9 @@
+class Solution:
+    def isValid(self, word: str) -> bool:
+        vowels = 'aeiouAEIOU'
+        return (
+            len(word) >= 3 and
+            all(c.isalnum() for c in word) and
+            any(c.isalpha() and c not in vowels for c in word) and
+            any(c in vowels for c in word) 
+        )
