@@ -1,0 +1,11 @@
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        numToNextGreater = {}
+        st = []
+
+        for num in nums2:
+            while st and st[-1] < num:
+                numToNextGreater[st.pop()] = num
+            st.append(num)
+        
+        return [numToNextGreater.get(num, -1) for num in nums1]
