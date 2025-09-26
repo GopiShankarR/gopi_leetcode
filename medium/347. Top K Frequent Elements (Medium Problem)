@@ -1,0 +1,15 @@
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        hashMap = {}
+        n = len(nums)
+        result = []
+
+        for i in range(n):
+            if nums[i] not in hashMap:
+                hashMap[nums[i]] = 1
+            else:
+                hashMap[nums[i]] += 1
+        
+        result = [k for k, v in sorted(hashMap.items(), key=lambda x: x[1], reverse=True)]
+
+        return result[0:k]
