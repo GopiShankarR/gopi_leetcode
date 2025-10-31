@@ -1,0 +1,16 @@
+class Solution:
+    def getSneakyNumbers(self, nums: List[int]) -> List[int]:
+        hashMap = {}
+        result = []
+
+        for i in nums:
+            if i in hashMap:
+                hashMap[i] += 1
+            else:
+                hashMap[i] = 1
+        
+        for key, val in hashMap.items():
+            if val == 2:
+                result.append(key)
+
+        return result
