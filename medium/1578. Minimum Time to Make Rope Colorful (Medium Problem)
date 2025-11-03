@@ -1,0 +1,17 @@
+class Solution:
+    def minCost(self, colors: str, neededTime: List[int]) -> int:
+        total = 0
+        n = len(colors)
+        l = 0
+
+        for r in range(1, n):
+            if colors[l] == colors[r]:
+                if neededTime[l] < neededTime[r]:
+                    total += neededTime[l]
+                    l = r
+                else:
+                    total += neededTime[r]
+            else:
+                l = r
+
+        return total
