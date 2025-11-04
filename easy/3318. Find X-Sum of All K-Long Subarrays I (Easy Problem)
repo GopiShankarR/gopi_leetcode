@@ -1,0 +1,20 @@
+class Solution:
+    def findXSum(self, nums: List[int], k: int, x: int) -> List[int]:
+        result = []
+        n = len(nums)
+
+        for i in range(n - k + 1):
+            count = Counter(nums[i: i + k])
+
+            if len(count) <= x:
+                result.append(sum(nums[i: i + k]))
+            else:
+                pairs = list(count.items())
+                pairs.sort(key = lambda x: (x[1], x[0]), reverse=True)
+                curr_sum = 0
+                for num, count in pairs[:x]:
+                    curr_sum += (num * count)
+                
+                result.append(curr_sum)
+
+        return result
