@@ -1,0 +1,46 @@
+class Solution:
+    def processQueries(self, c: int, connections: List[List[int]], queries: List[List[int]]) -> List[int]:
+        adj = defaultdict(list)
+
+        for u, v in connections:
+            adj[u].append(v)
+            adj[v].append(u)
+
+        online = set()
+        stationGroup = {}
+        minHeaps = defaultdict(list)
+
+        def dfs(station, groupId):
+            if station in online:
+                return
+            
+            online.add(station)
+            stationGroup[station] = groupId
+            heappush(minHeaps[groupId], station)
+
+            for neigh in adj[station]:
+                dfs(neigh, groupId)
+            
+        for s in range(1, c + 1):
+            dfs(s, s)
+        
+        result = []
+        for qType, qStation in queries:
+            if qType == 1:
+                if qStation in online:
+                    result.append(qStation)
+                    continue
+                groupId = stationGroup[qStation]
+                minHeap = minHeaps[groupId]
+
+                while minHeap and minHeap[0] not in online:
+                    heappop(minHeap)
+                
+                if minHeap:
+                    result.append(minHeap[0])
+                else:
+                    result.append(-1)
+            else:
+                online.discard(qStation)
+
+        return result
