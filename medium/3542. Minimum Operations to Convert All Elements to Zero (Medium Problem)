@@ -1,0 +1,17 @@
+class Solution:
+    def minOperations(self, nums: List[int]) -> int:
+        st = []
+        result = 0
+
+        for num in nums:
+            while st and st[-1] > num:
+                st.pop()
+
+            if num == 0:
+                continue
+            
+            if not st or num != st[-1]:
+                result += 1
+                st.append(num)
+
+        return result
