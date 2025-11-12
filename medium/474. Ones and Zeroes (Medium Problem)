@@ -1,0 +1,16 @@
+class Solution:
+    def findMaxForm(self, strs: List[str], m: int, n: int) -> int:
+        dp = defaultdict(int)
+
+        for i in range(len(strs)):
+            s = strs[i]
+            mCount, nCount = s.count("0"), s.count("1")
+
+            for j in range(0, m + 1):
+                for k in range(0, n + 1):
+                    if mCount <= j and nCount <= k:
+                        dp[(i, j, k)] = max(1 + dp[(i - 1, j - mCount, k - nCount)], dp[(i - 1, j, k)])
+                    else:
+                        dp[(i, j, k)] = dp[(i - 1, j, k)]
+            
+        return dp[len(strs) - 1, m, n]
