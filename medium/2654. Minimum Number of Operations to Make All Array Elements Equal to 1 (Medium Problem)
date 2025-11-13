@@ -1,0 +1,35 @@
+class Solution:
+    def minOperations(self, nums: List[int]) -> int:
+        countOne = 0
+
+        for n in nums:
+            if n == 1:
+                countOne += 1
+        
+        if countOne > 0:
+            return len(nums) - countOne
+        
+        def gcd(a, b):
+            while a and b:
+                a = a % b
+                b, a = a, b
+            return max(a, b)
+
+        subLength = float("inf")
+
+        for l in range(len(nums)):
+            currGCD = 0
+            for r in range(l, len(nums)):
+
+                if r - l + 1 > subLength:
+                    break
+                currGCD = gcd(currGCD, nums[r])
+
+                if currGCD == 1:
+                    subLength = r - l + 1
+                    break
+
+        if subLength == float("inf"):
+            return -1
+        
+        return (subLength - 1) + len(nums) - 1
