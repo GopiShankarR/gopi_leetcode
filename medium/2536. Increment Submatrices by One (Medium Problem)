@@ -1,0 +1,20 @@
+class Solution:
+    def rangeAddQueries(self, n: int, queries: List[List[int]]) -> List[List[int]]:
+        matrix = [[0] * (n + 1) for _ in range(n + 1)]
+
+        for r1, c1, r2, c2 in queries:
+            matrix[r1][c1] += 1
+            matrix[r1][c2 + 1] -= 1
+            matrix[r2 + 1][c1] -= 1
+            matrix[r2 + 1][c2 + 1] += 1
+
+        result = [[0] * n for _ in range(n)]
+
+        for r in range(n):
+            for c in range(n):
+                top = 0 if r == 0 else result[r - 1][c]
+                left = 0 if c == 0 else result[r][c - 1]
+                topLeft = 0 if r == 0 or c == 0 else result[r - 1][c - 1]
+                result[r][c] = matrix[r][c] + top + left - topLeft
+        
+        return result
