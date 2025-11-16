@@ -1,0 +1,16 @@
+class Solution:
+    def countDigits(self, num: int) -> int:
+        n = num
+        count = 0
+        rem = 0
+
+        while n != 0:
+            rem = n
+            rem %= 10
+
+            if num % rem == 0:
+                count += 1
+            
+            n //= 10
+
+        return count
