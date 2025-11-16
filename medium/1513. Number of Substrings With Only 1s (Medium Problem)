@@ -1,0 +1,16 @@
+class Solution:
+    def numSub(self, s: str) -> int:
+        n = len(s)
+        countOnes = 0
+        total = 0
+        mod = 10 ** 9 + 7
+
+        for n in s:
+            if n == '1':
+                countOnes += 1
+            else:
+                total += ((countOnes * (countOnes + 1)) // 2) % mod
+                countOnes = 0
+
+        total += ((countOnes * (countOnes + 1)) // 2) % mod
+        return total
