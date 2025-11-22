@@ -1,0 +1,14 @@
+class Solution:
+    def countPalindromicSubsequence(self, s: str) -> int:
+        result = set()
+        l, r = set(), Counter(s)
+
+        for mid in s:
+            r[mid] -= 1
+
+            for c in l:
+                if r[c] > 0:
+                    result.add((mid, c))
+            l.add(mid)
+
+        return len(result)
