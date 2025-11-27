@@ -1,0 +1,15 @@
+class Solution:
+    def maxSubarraySum(self, nums: List[int], k: int) -> int:
+        prefix = [float("inf")] * k
+        prefix[0] = 0
+        result = float("-inf")
+        total = 0
+
+        for i, n in enumerate(nums):
+            total += n
+            length = i + 1
+            prefix_length = length % k
+            result = max(result, total - prefix[prefix_length])
+            prefix[prefix_length] = min(prefix[prefix_length], total)
+
+        return result
