@@ -1,0 +1,22 @@
+class Solution:
+    def minSubarray(self, nums: List[int], p: int) -> int:
+        total = sum(nums)
+        remainder = total % p
+
+        if remainder == 0:
+            return 0
+
+        n = len(nums)
+        result = n
+        currSum = 0
+        hashMap = {0: -1}
+        
+        for i, l in enumerate(nums):
+            currSum = (currSum + l) % p
+            prefix = (currSum - remainder + p) % p
+            if prefix in hashMap:
+                length = i - hashMap[prefix]
+                result = min(result, length)
+            hashMap[currSum] = i
+
+        return -1 if result == n else result
