@@ -1,0 +1,15 @@
+class Solution:
+    def specialTriplets(self, nums: List[int]) -> int:
+        MOD = 10 ** 9 + 7
+        result = 0
+        leftCounter = Counter()
+        rightCounter = Counter(nums)
+
+        for num in nums:
+            rightCounter[num] -= 1
+            double = num * 2
+            tripletCount = (leftCounter[double] * rightCounter[double]) % MOD
+            result = (result + tripletCount) % MOD
+            leftCounter[num] += 1
+        
+        return result
